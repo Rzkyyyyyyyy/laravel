@@ -18,6 +18,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', function () {
-    return view('/welcome');
+    return view('layout.master');
 });
 Route::resource('/siswa', siswaController::class);
