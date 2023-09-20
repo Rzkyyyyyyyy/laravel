@@ -13,7 +13,7 @@ class siswaController extends Controller
      */
     public function index()
     {
-        $data = siswa::orderBy('nis','desc')->paginate(3);
+        $data = siswa::orderBy('nis','desc')->paginate(10);
         return view('siswa.index')->with('data',$data);
     }
 
@@ -51,6 +51,7 @@ class siswaController extends Controller
         ];
         siswa::create($data);
         return redirect()->to('siswa')->with('success','berhasil menambahkan data');
+            
     }
 
     /**
@@ -66,7 +67,8 @@ class siswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = siswa::where('nis',$id)->first();
+        return view('siswa.edit')->with('data',$data);
     }
 
     /**
@@ -74,7 +76,20 @@ class siswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama'=>'required',
+            'jurusan'=>'required',
+        ],[
+            'nama.required'=>'Nama wajib diisi',
+            'jurusan.required'=>'jurusan wajib diisi',
+        ]);
+        $data =[ 
+        // 'nis'=>$request->nis,
+            'nama'=>$request->nama,
+            'jurusan'=>$request->jurusan,
+        ];
+        siswa::where('nis', $id)->update($data);
+        return to_route('siswa.index')->with('success','berhasil melakukan update data');
     }
 
     /**
