@@ -15,9 +15,9 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>NIM</th>
+                            <th>Kelas</th>
                             <th>Nama</th>
-                            <th>Jurusan</th>
+                            <th>Absen</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

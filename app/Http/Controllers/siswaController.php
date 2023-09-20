@@ -30,22 +30,20 @@ class siswaController extends Controller
      */
     public function store(Request $request)
     {
-        Session::flash('nis',$request->nim);
+        Session::flash('kelas',$request->kelas);
         Session::flash('nama',$request->nama);
         Session::flash('jurusan',$request->jurusan);
             $request->validate([
-                'nis'=>'required|numeric|unique:siswa,nis',
+                'kelas'=>'required',
                 'nama'=>'required',
                 'jurusan'=>'required',
             ],[
-                'nim.required'=>'NIM wajib diisi',
-                'nim.numeric'=>'NIM wajib dalam angka',
-                'nim.unique'=>'NIM yang diisikan sudah ada dalam database',
+                'kelas.required'=>'kelas wajib diisi',
                 'nama.required'=>'Nama wajib diisi',
                 'jurusan.required'=>'jurusan wajib diisi',
             ]);
             $data =[ 
-            'nis'=>$request->nis,
+            'kelas'=>$request->kelas,
             'nama'=>$request->nama,
             'jurusan'=>$request->jurusan,
         ];
@@ -66,7 +64,8 @@ class siswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data =siswa::where('nim',$id)->first();
+        return view('siswa.edit')->with('data', $data);     
     }
 
     /**

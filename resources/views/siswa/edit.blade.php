@@ -6,10 +6,9 @@
 @csrf
        <div class="my-3 p-3 bg-body rounded shadow-sm">
            <div class="mb-3 row">
-               <label for="kelas" class="col-sm-2 col-form-label">Kelas</label>
+               <label for="nis" class="col-sm-2 col-form-label">NIM</label>
                <div class="col-sm-10">
-                   <input type="number" class="form-control" name='kelas' value="{{ Session::get('kelas') }}"id="kelas">
-               </div>
+                   
            </div>
            <div class="mb-3 row">
                <label for="nama" class="col-sm-2 col-form-label">Nama</label>
